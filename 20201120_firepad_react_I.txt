@@ -1,0 +1,115 @@
+import React from "react";
+
+const membersMock = [
+  {
+    id: 14540103,
+    login: "antonio06",
+    avatar_url: "https://avatars1.githubusercontent.com/u/14540103?v=4",
+  },
+  {
+    id: 1457912,
+    login: "brauliodiez",
+    avatar_url: "https://avatars1.githubusercontent.com/u/1457912?v=4",
+  },
+];
+
+export const App = () => {
+  const [members, setMembers] = React.useState(membersMock);
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Id</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {members.map((member) => (
+            <h1>{member.login}</h1>
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+};
+
+******
+
+<img src={member.avatar_url} style={{ width: "5rem" }} />
+
+*****
+
+  React.useEffect(() => {
+    fetch(`https://api.github.com/orgs/lemoncode/members`)
+      .then((response) => response.json())
+      .then((json) => setMembers(json));
+  }, []);
+
+*****
+
+export interface MemberEntity {
+  avatar_url: string;
+  id: string;
+  login: string;
+}
+
+*****
+
+import React from "react";
+import { MemberEntity } from "./model";
+
+interface Props {
+  member: MemberEntity;
+}
+
+export const MemberTableRow: React.FC<Props> = (props) => {
+  const { member } = props;
+
+  return (
+    <tr>
+      <td>
+        <img src={member.avatar_url} style={{ width: "5rem" }} />
+      </td>
+      <td>{member.id}</td>
+      <td>{member.login}</td>
+    </tr>
+  );
+};
+
+****
+
+import React from "react";
+import { MemberEntity } from "./model";
+import { MemberTableRow } from "./member-table-row";
+
+export const App = () => {
+  const [members, setMembers] = React.useState<MemberEntity[]>([]);
+
+  React.useEffect(() => {
+    fetch(`https://api.github.com/orgs/lemoncode/members`)
+      .then((response) => response.json())
+      .then((json) => setMembers(json));
+  }, []);
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Id</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {members.map((member) => (
+            <MemberTableRow member={member} />
+          ))}
+        </tbody>
+      </table>
+    </>
+  );
+};
