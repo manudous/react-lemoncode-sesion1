@@ -180,7 +180,32 @@ Los componentes se crean (se montan en el DOM), se actualizan("crecen"), y muere
 <img src="./imagesMarkDown/cicloVida.png"/>
 
 >#### Manejo de datos comunes
-Cuando desarrollamos una aplicación podemos encontrarnos con datos que son transversales a la misma, e ir pasándolos de padre a hijo sucesivamente puede impactar en la calidad y mantenibilidad de nuestro código.
-1:26'
+Cuando desarrollamos una aplicación podemos encontrarnos con datos que son transversales a la misma, e ir pasándolos de padre a hijo sucesivamente puede impactar en la calidad y mantenibilidad de nuestro código. Tú puedes dicir el nivel del contexto a nivel de algún nodo o de un node.
+¿Por qué no un singleton?
+¿Nos podríamos simplificar y usar una variable estática glboal o un singleton para almacenar datos comunes?
++ Si hacemos un cambio en el contexto automáticament se propaga, con un singleton tenríamos que hacer nuestro propio event emitter.
++ El contexto lo podemos colocar a la altura del árbol de componentes que veamos oportuno.
++ Con un singleton / variable estática tendríamos problemas si hacemos [Server Side Rendering](https://lemoncode.net/lemoncode-blog/2018/7/6/server-side-rendering-ii-implementacion-react-next).
 
+>#### Hooks
+
+React Hooks son funciones que nos permiten enganchar estado y ciclo de vida a componentes funcionales.
+
+>#### Componentización
+Si rompoemos un componente grande en subcomponentes, tenemos código más legible(principio de mismo nivel de abstracción) y potencialmente más reusable.
+
+>#### Desarrollo progresivo
+
++ Plantea un layout y compenentiza.
++ Añade al contenedor datos mock.
++ Sustituye por API real.
++ Si hiciera falta meter Redux.
+
+>#### Creando el proyecto
+
+¿Cómo arranco mi proyecto desde cero?
++ **Cli.** El equipo de Facebook ofrece create-react-app. 
++ **Desde cero.** Con webpack o parcel puedes configurarlo adaptado a tus necesidades.
+
+No hay consenso en utilizar una u otra.
 
